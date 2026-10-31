@@ -1,5 +1,13 @@
 # VanishCam — webcam disappearance effects
 
+## Android
+
+A native Android adaptation with a Portuguese interface, front/back camera,
+four disappearance effects, gesture controls and PNG capture is available in
+[`android/`](android/README.md). Build and validation instructions are included.
+The Android version processes frames locally and does not provide a virtual
+camera to other apps.
+
 Video is processed on your computer. It is neither recorded nor sent to a server. The preview window and virtual camera show only the video and effects, without overlaid menus, instructions, or text.
 
 For step-by-step instructions in English and Italian, see the [user guide](USER_GUIDE_EN_IT.md).
