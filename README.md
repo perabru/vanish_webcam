@@ -1,74 +1,98 @@
-# VanishCam — webcam disappearance effects
+# VanishCam — efeitos para sua webcam
 
-Video is processed on your computer. It is neither recorded nor sent to a server. The preview window and virtual camera show only the video and effects, without overlaid menus, instructions, or text.
+Desapareça da imagem com um gesto. O vídeo é processado no próprio computador: o programa não grava a câmera nem envia as imagens para servidores. O vídeo exibido e enviado à câmera virtual permanece sem menus ou textos sobrepostos.
 
-For step-by-step instructions in English and Italian, see the [user guide](USER_GUIDE_EN_IT.md).
+## Baixar para Windows
 
-## ☕ Buy me a coffee
+**[Baixar VanishCam.exe](https://github.com/perabru/vanish_webcam/releases/latest/download/VanishCam.exe)** · **[Pacote ZIP com guia em português](https://github.com/perabru/vanish_webcam/releases/latest/download/VanishCam-Windows-x64.zip)**
 
-If you like this project and want to support it, you can buy me a coffee through [PayPal](https://paypal.me/nicovic17) or [Revolut](https://revolut.me/nicoauriemma).
+Windows 64 bits. O executável inclui Python, os modelos de reconhecimento, as imagens e o som padrão. Os drivers opcionais de câmera e áudio virtual são instalados separadamente.
 
-## Download for Windows
+## Começar
 
-[Download VanishCam.exe]( https://nicoaauriemma.vercel.app/shop ) and double-click it to run the app. You do not need to install Python.
+1. Abra `VanishCam.exe`. Se baixou o ZIP, extraia o pacote primeiro.
+2. Escolha **1 — Normal Vanish** ou **2 — Naruto Vanish** com o teclado ou o mouse.
+3. Saia da frente da câmera por **4 segundos** para capturar o fundo.
+4. Quando o terminal informar que o fundo está pronto, volte ao enquadramento.
+5. Faça o gesto do modo selecionado ou pressione **V** na janela da câmera.
 
-The published EXE may predate the Particles and Goku modes. To use them now, run the local scripts or rebuild the EXE from these sources.
+| Modo | Gesto | Resultado |
+| --- | --- | --- |
+| Normal | Indicador e médio em V | A pessoa desaparece gradualmente |
+| Naruto | Palmas juntas, dedos lado a lado, ambas as mãos visíveis | Fumaça, tronco e som ao desaparecer |
 
-## Getting started
+Mantenha a câmera parada depois de capturar o fundo. Se a iluminação ou o cenário mudar, pressione **Espaço** e saia do quadro por mais 4 segundos.
 
-1. Double-click `AVVIA_LOCALE.bat`.
-2. In the start menu, choose **Normal Vanish**, **Naruto Vanish**, **Particles**, or **Goku** with the mouse or the `1`, `2`, `3`, and `4` keys.
-3. Step out of the camera frame for 4 seconds while the background is captured. The terminal tells you when you can step back in.
+## Teclas
 
-**Normal Vanish:** Raise your index and middle fingers in a V sign. The dissolve starts as soon as the gesture is recognized and lasts about 3.6 seconds.
+Clique na janela da câmera antes de utilizar os atalhos.
 
-**Particles:** Make the same V sign as in Normal Vanish. Your silhouette breaks into small colored fragments that drift sideways as if carried by the wind. The effect lasts about 2.1 seconds. It captures your silhouette once when the effect starts to keep the video smooth.
+| Tecla | Ação |
+| --- | --- |
+| V | Ativar o efeito manualmente |
+| R | Reaparecer e remover o tronco |
+| Espaço | Capturar novamente o fundo |
+| F | Alternar tela cheia |
+| Q ou Esc | Fechar e liberar os dispositivos |
 
-**Goku:** Hold your index and middle fingers straight and together against your forehead for 1 second. Animated vertical comic-style lines run across your silhouette just before you teleport away and linger briefly afterward. To reappear, lower your hand, then repeat the gesture for another 1 second. The return uses the reverse effect. If you break the pose, the countdown starts over. `assets/teleport.MP3` plays on both disappearance and reappearance. The terminal shows the countdown for each gesture. The `V` and `R` keys are disabled in this mode: the gesture is the only way to disappear and reappear. No text is overlaid on the video.
+## Google Meet: imagem e som
 
-**Naruto Vanish:** Bring your palms together in front of the webcam, with your fingers side by side rather than interlaced. Keep both hands visible. As soon as the gesture is recognized, you vanish in a cloud of smoke and a wooden log appears, falls, and remains visible until you press `R`. No microphone is needed. Naruto mode uses `hand_landmarker.task` to track both hands. `assets/vanish.MP3` plays through your computer speakers when the disappearance starts, including when triggered with `V`. You can trigger it again after pressing `R`.
+**[Leia o guia completo em português](GUIA_GOOGLE_MEET_PTBR.md).**
 
-To start a mode without the menu:
+Para a imagem, instale [OBS Studio](https://obsproject.com/download), deixe o OBS fechado, abra o VanishCam e selecione **OBS Virtual Camera** em **Meet → Configurações → Vídeo → Câmera**.
 
-```powershell
-local_app\AVVIA_LOCALE.bat --mode naruto
-local_app\AVVIA_LOCALE.bat --mode normal
-local_app\AVVIA_LOCALE.bat --mode particles
-local_app\AVVIA_LOCALE.bat --mode goku
-```
+Para transmitir **sua voz e o efeito sonoro juntos**, o guia mostra a configuração do [Voicemeeter Banana](https://vb-audio.com/Voicemeeter/banana.htm), incluindo os dispositivos de entrada e saída e como evitar eco. A câmera virtual não encaminha o som do efeito por conta própria.
 
-## Virtual camera and OBS
+## Usar seu próprio MP3 ou WAV
 
-If [OBS Studio](https://obsproject.com/) is installed, the app automatically tries to open **OBS Virtual Camera**. The terminal shows the device name. Use `AVVIA_VIRTUAL.bat` to require a virtual camera. Select **OBS Virtual Camera** in the app that will receive the video. OBS's virtual camera must be stopped while this app is producing its output.
+Feche o programa, coloque **som.mp3** ou **som.wav** ao lado de `VanishCam.exe` e abra-o novamente. No modo Naruto, esse arquivo substitui o som incluído no pacote. Se os dois existirem, o MP3 tem prioridade. Remova ou renomeie o arquivo externo para voltar ao som padrão.
 
-To use the effect in an OBS scene, run `AVVIA_OBS.bat`, add a **Window Capture** source, select **Webcam - Anteprima**, and then start the virtual camera from OBS. Alternatively, use [Unity Capture](https://github.com/schellingb/UnityCapture) as a separate virtual video source:
-
-```powershell
-local_app\AVVIA_VIRTUAL.bat --virtual-backend unitycapture
-```
-
-OBS has only one virtual camera. Do not use it as both an OBS input and output at the same time. See the [pyvirtualcam documentation](https://github.com/letmaik/pyvirtualcam#supported-virtual-cameras).
-
-## Controls
-
-- `SPACE`: capture a new background.
-- `R`: make the person reappear.
-- `V`: manually start the selected mode's effect.
-- `F`: toggle fullscreen.
-- `Q` or `ESC`: quit and release the cameras.
-
-The `V` and `R` keys are disabled in Goku mode.
-
-You can change the camera, resolution, and maximum virtual-output FPS:
+Para testar o áudio sem abrir a câmera, use `TESTAR_SOM.bat` ou:
 
 ```powershell
-local_app\AVVIA_LOCALE.bat --camera 1 --width 1280 --height 720 --fps 30
+.\VanishCam.exe --teste-som
 ```
 
-To troubleshoot gesture recognition without adding text to the video, pass `--gesture-debug`. Diagnostic information appears only in the terminal.
+Para indicar outro caminho:
 
-## Visual assets
+```powershell
+.\VanishCam.exe --mode naruto --som "C:\Sons\efeito.wav"
+```
 
-The [wooden log](assets/substitution_log.png) is an original illustration generated with ImageGen using the supplied image as a visual reference. Smoke is drawn in real time by `naruto_effect.py` so it follows the person's position and scales with the video. We also considered a [CC0 smoke sprite sheet](https://opengameart.org/content/smoke-sprite-sheet), but the procedural animation adapts better to dynamic positioning without an additional asset. No anime frames or assets are included in the project.
+O link solicitado para personalização foi [Naruto disappear sound effect](https://www.youtube.com/watch?v=isbyPXL9p3w). O download do áudio não ficou disponível durante a preparação desta versão; o arquivo desse vídeo não está incluído. Use o recurso de áudio externo para carregar o MP3/WAV desejado sem recompilar.
 
-Goku mode uses the [MediaPipe BlazeFace short-range model](https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/tasks/web/vision/README.md) to estimate the forehead position and `hand_landmarker.task` to track the fingers. The teleport's visual trace is drawn in code, without anime frames.
+## Outras opções
+
+Abra um terminal na pasta do executável:
+
+```powershell
+.\VanishCam.exe --mode normal
+.\VanishCam.exe --mode naruto
+.\VanishCam.exe --camera 1 --width 1280 --height 720 --fps 30
+.\VanishCam.exe --no-virtual-camera
+.\VanishCam.exe --virtual-camera --virtual-backend obs
+.\VanishCam.exe --gesture-debug
+.\VanishCam.exe --help
+```
+
+Se a webcam estiver ocupada, feche outros aplicativos que a utilizam. Confira as permissões de câmera do Windows para aplicativos da área de trabalho. Para uma segunda câmera, tente `--camera 1`.
+
+## Executar pelo código-fonte
+
+Instale Python 3.11 de 64 bits. No Windows, dê dois cliques em **INICIAR.bat**. O script prepara o ambiente na pasta do projeto. As dependências e os modelos são baixados na primeira execução; depois os arquivos locais são reutilizados.
+
+Ou execute manualmente:
+
+```powershell
+py -3.11 -m venv .venv-local
+.\.venv-local\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv-local\Scripts\python.exe vanish_cam.py
+```
+
+Para criar o executável no Windows, use **BUILD_WINDOWS.bat**. A compilação automatizada em GitHub Actions executa os testes, valida os modelos, decodifica o MP3 incluído e testa o executável antes de publicar o download em Releases.
+
+## Créditos
+
+Este fork mantém o projeto original e os créditos dos recursos. A ilustração do tronco foi gerada com ImageGen e a fumaça é desenhada em tempo real por `naruto_effect.py`; detalhes em [assets/README.md](assets/README.md).
+
+Apoio ao autor original: [PayPal](https://paypal.me/nicovic17) ou [Revolut](https://revolut.me/nicoauriemma).

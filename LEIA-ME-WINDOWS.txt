@@ -1,39 +1,37 @@
-VanishCam - Windows 10/11, 64 bits
+VanishCam — Windows 64 bits
 
-COMO USAR
-1. Abra VanishCam.exe. Nao e preciso instalar Python.
-2. Escolha 1 (Normal Vanish) ou 2 (Naruto Vanish) no menu.
+1. Extraia o ZIP e abra VanishCam.exe. Não é preciso instalar Python.
+2. Escolha 1 (Normal) ou 2 (Naruto).
 3. Saia do enquadramento por 4 segundos para capturar o fundo.
-4. Volte para a frente da camera.
+4. Volte e faça o gesto: V com os dedos no Normal; palmas juntas no Naruto.
 
-Normal: faca o sinal de V com os dedos indicador e medio.
-Naruto: junte as palmas com as duas maos visiveis na camera.
+TECLAS: V desaparecer; R reaparecer; Espaço novo fundo; F tela cheia;
+Q ou Esc fechar. Clique na janela da câmera antes de utilizar o teclado.
+O som toca ao desaparecer no modo Naruto, inclusive ao pressionar V.
 
-TECLAS (com a janela da webcam selecionada)
-V: iniciar o efeito manualmente.
-R: reaparecer.
-Espaco: capturar novamente o fundo (saia do quadro por 4 segundos).
-F: tela cheia.
-Q ou Esc: fechar.
+SOM PERSONALIZADO
+Coloque som.mp3 ou som.wav na mesma pasta de VanishCam.exe e reabra o
+programa. O MP3 tem prioridade se existirem os dois. Remova ou renomeie
+o arquivo externo para voltar ao som incluído no pacote.
+Dê dois cliques em TESTAR_SOM.bat para testar sem abrir a câmera.
+O áudio exato do vídeo enviado do YouTube não está incluído: o download
+não ficou disponível. O programa aceita seu arquivo MP3/WAV sem recompilar.
 
-Os modelos e os arquivos de imagem e audio estao incluidos no executavel.
-A primeira abertura pode demorar alguns segundos para extrair esses arquivos.
-O video e processado localmente, sem gravacao ou envio para servidores.
+GOOGLE MEET — IMAGEM
+Instale OBS Studio: https://obsproject.com/download
+Deixe o OBS fechado. Abra o VanishCam antes do Meet e escolha:
+Meet → Configurações → Vídeo → Câmera → OBS Virtual Camera.
 
-Se a webcam nao abrir, feche os outros aplicativos que a utilizam e confira
-as permissoes de camera do Windows para aplicativos da area de trabalho.
-Para selecionar outra webcam, abra um terminal na pasta e execute:
-VanishCam.exe --camera 1
+GOOGLE MEET — SUA VOZ + SOM DO EFEITO
+Consulte GUIA_GOOGLE_MEET_PTBR.md, incluído neste pacote. Ele explica como
+usar Voicemeeter Banana para misturar sua voz e o som do VanishCam.
+A câmera virtual transmite a imagem; o áudio precisa de configuração própria.
 
-CAMERA VIRTUAL (opcional)
-Instale OBS Studio para disponibilizar OBS Virtual Camera. Mantenha a
-camera virtual parada no OBS enquanto o VanishCam estiver produzindo video.
-Escolha OBS Virtual Camera no aplicativo de chamada ou gravacao.
-Sem esse driver, a pre-visualizacao local continua funcionando.
+Se a câmera não abrir, feche os outros aplicativos que a utilizam e confira
+as permissões de câmera do Windows para aplicativos da área de trabalho.
+Para outra webcam, execute no terminal: VanishCam.exe --camera 1
 
-O pacote desta versao contem os modos Normal e Naruto implementados em
-vanish_cam.py. O README original menciona modos adicionais que nao estao
-implementados no arquivo principal deste repositorio.
+A primeira abertura pode demorar alguns segundos para extrair os arquivos.
+O vídeo é processado localmente, sem gravação nem envio para servidores.
 
-O executavel nao possui assinatura digital de editor.
 Projeto: https://github.com/perabru/vanish_webcam

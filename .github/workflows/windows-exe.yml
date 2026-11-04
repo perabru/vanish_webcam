@@ -3,13 +3,15 @@ name: Windows executable
 on:
   workflow_dispatch:
   push:
-    branches: [windows-executable]
+    branches: [main, windows-executable]
     paths:
       - '**.py'
       - '**.spec'
       - 'assets/**'
       - 'requirements*.txt'
-      - 'BUILD_WINDOWS.bat'
+      - '*.bat'
+      - '*.md'
+      - 'LEIA-ME-WINDOWS.txt'
       - '.github/workflows/windows-exe.yml'
 
 permissions:
@@ -47,13 +49,16 @@ jobs:
         run: |
           & .\dist\VanishCam.exe --self-test
           if ($LASTEXITCODE -ne 0) { throw 'Executable self-test failed' }
+          & .\dist\VanishCam.exe --teste-som
+          if ($LASTEXITCODE -ne 0) { throw 'Executable audio playback failed' }
           & .\dist\VanishCam.exe --help
           if ($LASTEXITCODE -ne 0) { throw 'Executable help failed' }
       - name: Package portable download
         shell: pwsh
         run: |
           Copy-Item LEIA-ME-WINDOWS.txt dist\LEIA-ME.txt
-          Compress-Archive -Path dist\VanishCam.exe,dist\LEIA-ME.txt -DestinationPath dist\VanishCam-Windows-x64.zip
+          Copy-Item GUIA_GOOGLE_MEET_PTBR.md,TESTAR_SOM.bat dist\
+          Compress-Archive -Path dist\VanishCam.exe,dist\LEIA-ME.txt,dist\GUIA_GOOGLE_MEET_PTBR.md,dist\TESTAR_SOM.bat -DestinationPath dist\VanishCam-Windows-x64.zip
           Get-FileHash dist\VanishCam.exe,dist\VanishCam-Windows-x64.zip -Algorithm SHA256 | ForEach-Object { "$($_.Hash.ToLower())  $(Split-Path $_.Path -Leaf)" } | Set-Content dist\SHA256SUMS.txt
           python -m pip freeze | Set-Content dist\dependencies.txt
       - uses: actions/upload-artifact@v4
@@ -63,6 +68,8 @@ jobs:
             dist/VanishCam.exe
             dist/VanishCam-Windows-x64.zip
             dist/LEIA-ME.txt
+            dist/GUIA_GOOGLE_MEET_PTBR.md
+            dist/TESTAR_SOM.bat
             dist/SHA256SUMS.txt
             dist/dependencies.txt
           if-no-files-found: error
@@ -73,5 +80,5 @@ jobs:
         shell: pwsh
         run: |
           $tag = "windows-20261104-$env:GITHUB_RUN_NUMBER"
-          gh release create $tag dist/VanishCam.exe dist/VanishCam-Windows-x64.zip dist/SHA256SUMS.txt dist/dependencies.txt --target "$env:GITHUB_SHA" --title "VanishCam para Windows 64 bits" --notes-file LEIA-ME-WINDOWS.txt
+          gh release create $tag dist/VanishCam.exe dist/VanishCam-Windows-x64.zip dist/SHA256SUMS.txt dist/dependencies.txt --target "$env:GITHUB_SHA" --title "VanishCam em português — Windows 64 bits" --notes-file LEIA-ME-WINDOWS.txt
           if ($LASTEXITCODE -ne 0) { throw 'Release publication failed' }
