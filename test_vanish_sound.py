@@ -11,7 +11,7 @@ from local_app import vanish_sound as audio
 class SoundTests(unittest.TestCase):
     def test_portable_sound_override_and_builtin_fallback(self):
         with tempfile.TemporaryDirectory() as directory:
-            folder = Path(directory)
+            folder = Path(directory).resolve()
             with patch.object(audio.sys, "frozen", True, create=True), patch.object(audio.sys, "executable", str(folder / "VanishCam.exe")):
                 self.assertEqual(audio.resolve_sound_path(), audio.SOUND_PATH)
                 (folder / "som.wav").write_bytes(b"wav")
