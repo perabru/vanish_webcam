@@ -1,7 +1,7 @@
 """PyInstaller one-file build for the Windows webcam app."""
 
 from pathlib import Path
-from PyInstaller.utils.hooks import collect_dynamic_libs
+from PyInstaller.utils.hooks import collect_data_files, collect_dynamic_libs, collect_submodules
 
 
 root = Path(SPECPATH).resolve()
@@ -23,8 +23,8 @@ a = Analysis(
     [str(root / "vanish_cam.py")],
     pathex=[str(root)],
     binaries=collect_dynamic_libs("mediapipe"),
-    datas=[(str(path), destination) for path, destination in resources],
-    hiddenimports=["pygame.mixer", "mediapipe.tasks.c"],
+    datas=[(str(path), destination) for path, destination in resources] + collect_data_files("mediapipe"),
+    hiddenimports=["pygame.mixer", "mediapipe.tasks.c"] + collect_submodules("pyvirtualcam"),
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

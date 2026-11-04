@@ -1,0 +1,39 @@
+VanishCam - Windows 10/11, 64 bits
+
+COMO USAR
+1. Abra VanishCam.exe. Nao e preciso instalar Python.
+2. Escolha 1 (Normal Vanish) ou 2 (Naruto Vanish) no menu.
+3. Saia do enquadramento por 4 segundos para capturar o fundo.
+4. Volte para a frente da camera.
+
+Normal: faca o sinal de V com os dedos indicador e medio.
+Naruto: junte as palmas com as duas maos visiveis na camera.
+
+TECLAS (com a janela da webcam selecionada)
+V: iniciar o efeito manualmente.
+R: reaparecer.
+Espaco: capturar novamente o fundo (saia do quadro por 4 segundos).
+F: tela cheia.
+Q ou Esc: fechar.
+
+Os modelos e os arquivos de imagem e audio estao incluidos no executavel.
+A primeira abertura pode demorar alguns segundos para extrair esses arquivos.
+O video e processado localmente, sem gravacao ou envio para servidores.
+
+Se a webcam nao abrir, feche os outros aplicativos que a utilizam e confira
+as permissoes de camera do Windows para aplicativos da area de trabalho.
+Para selecionar outra webcam, abra um terminal na pasta e execute:
+VanishCam.exe --camera 1
+
+CAMERA VIRTUAL (opcional)
+Instale OBS Studio para disponibilizar OBS Virtual Camera. Mantenha a
+camera virtual parada no OBS enquanto o VanishCam estiver produzindo video.
+Escolha OBS Virtual Camera no aplicativo de chamada ou gravacao.
+Sem esse driver, a pre-visualizacao local continua funcionando.
+
+O pacote desta versao contem os modos Normal e Naruto implementados em
+vanish_cam.py. O README original menciona modos adicionais que nao estao
+implementados no arquivo principal deste repositorio.
+
+O executavel nao possui assinatura digital de editor.
+Projeto: https://github.com/perabru/vanish_webcam
